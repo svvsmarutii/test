@@ -13,7 +13,7 @@ COPY --from=SAMPLE_LIB /tmp/target/sample-lib-1.0-SNAPSHOT.jar /tmp/src/main/web
 WORKDIR /tmp/
 RUN mvn package
 
-FROM tomcat:7
+FROM tomcat:8
 COPY --from=MAVEN_TOOL_CHAIN /tmp/target/sample.war $CATALINA_HOME/webapps/
 
 ADD --chown=root:root http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST $CATALINA_HOME/rook.jar
